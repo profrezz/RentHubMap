@@ -1,4 +1,5 @@
-﻿using System;
+﻿using renthubmap.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,10 +12,18 @@ namespace renthubmap.Controllers
     public class RenthubController : Controller
     {
         // GET: Renthub
-        public ActionResult Index()
+        public ActionResult Search()
         {
             return View();
         }
+
+        [HttpPost]
+        [ActionName("SearchResult")]
+        public ActionResult Search(DTOContainer dataContainer)
+        {
+            return View("Search", dataContainer);
+        }
+
         private void testcRentHub()
         {
             string filePath = "http://www.renthub.in.th/อพาร์ทเม้นท์-ห้องพัก-หอพัก/ซอยแบริ่ง-สุขุมวิท-107/";
