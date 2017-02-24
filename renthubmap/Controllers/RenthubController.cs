@@ -21,12 +21,14 @@ namespace renthubmap.Controllers
         [ActionName("SearchResult")]
         public ActionResult Search(DTOContainer dataContainer)
         {
+            dataContainer = testcRentHub(dataContainer);
             return View("Search", dataContainer);
         }
 
-        private void testcRentHub()
+        private DTOContainer testcRentHub(DTOContainer dataContainer)
         {
-            string filePath = "http://www.renthub.in.th/อพาร์ทเม้นท์-ห้องพัก-หอพัก/ซอยแบริ่ง-สุขุมวิท-107/";
+            string filePath = dataContainer.link;
+            //string filePath = "http://www.renthub.in.th/อพาร์ทเม้นท์-ห้องพัก-หอพัก/ซอยแบริ่ง-สุขุมวิท-107/";
             string data = getHTMLdata(filePath);
 
             HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
@@ -55,6 +57,11 @@ namespace renthubmap.Controllers
                             var address = addr.InnerText;
                             Console.WriteLine("Scr Image : " + li + " addr : " + address + " image : " + src);
 
+                            Apartment apartment = new Apartment();
+                            apartment.image = src;
+                            apartment.sublink = sublink;
+                            apartment.address = address;
+
                             // process sub link
                             string filePath_sub = "http://www.renthub.in.th/" + sublink;
                             string data_sub = getHTMLdata(filePath_sub);
@@ -69,24 +76,24 @@ namespace renthubmap.Controllers
                             var location_hash = data_sub.Substring(start + 1, end - start).Split(';')[0].Replace("\"", "");
                             if (htmlDoc_sub.DocumentNode != null)
                             {
-                                var proce_info = htmlDoc_sub.DocumentNode.SelectSingleNode("//div[@id='main_info']").InnerHtml;
+                                var head_info = htmlDoc_sub.DocumentNode.SelectSingleNode("//div[@id='main_info']").InnerHtml;
                                 var main_box = htmlDoc_sub.DocumentNode.SelectSingleNode("//div[@id='main_box']");
                                 var image_box = main_box.InnerHtml;
                                 var main_infos = main_box.NextSibling.NextSibling.InnerHtml;
                                 var price_infos = main_box.NextSibling.NextSibling.NextSibling.NextSibling.InnerHtml;
-
-                                //var main_infos = htmlDoc_sub.DocumentNode.SelectNodes("//div[contains(@class,'condo_listing_content')]");
-                                //foreach (var main_info in main_infos)
-                                //{
-                                //   // var main_infos = main_info.DocumentNode.SelectNodes("//div[@class='condo_listing_box']");
-                                //}
-
+                                
+                                apartment.innerHTML_room = head_info;
+                                apartment.innerHTML_image = image_box;
+                                apartment.innerHTML_info = main_infos;
+                                apartment.innerHTML_price = price_infos;
                             }
+                            //add data
+                            dataContainer.appartment.Add(apartment);
                         }
                     }
                 }
             }
-
+            return dataContainer;
         }
 
         private string getHTMLdata(string filePath)
