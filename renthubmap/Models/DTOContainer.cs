@@ -12,10 +12,12 @@ namespace renthubmap.Models
         public string link { get; set; }
         public List<Apartment> appartment {
             get {
-                if(appartment == null)
+                if(_appartment == null)
                 {
-                    return new List<Apartment>();
-                }else
+                    _appartment = new List<Apartment>();
+                    return _appartment;
+                }
+                else
                 {
                     return _appartment;
                 }

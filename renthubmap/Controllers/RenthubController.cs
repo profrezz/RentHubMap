@@ -46,7 +46,9 @@ namespace renthubmap.Controllers
 
                     if (bodyNode != null)
                     {
-                        for (int i = 0; i < bodyNode.Count; i++)
+                        string domain = "http://www.renthub.in.th/";
+                        var count = 10; //bodyNode.Count;
+                        for (int i = 0; i < count; i+=2)
                         {
                             var listnode = bodyNode[i];
                             var li = listnode.Attributes["id"].Value;
@@ -54,25 +56,31 @@ namespace renthubmap.Controllers
                             var addr = listnode.SelectSingleNode(".//span[@class='addr']");
                             var src = image != null ? image.Attributes["src"].Value : string.Empty;
                             var sublink = listnode.SelectSingleNode(".//span[@class='name']//a").Attributes["href"].Value;
+                            var name = listnode.SelectSingleNode(".//span[@class='name']//a").InnerText;
                             var address = addr.InnerText;
                             Console.WriteLine("Scr Image : " + li + " addr : " + address + " image : " + src);
 
                             Apartment apartment = new Apartment();
                             apartment.image = src;
-                            apartment.sublink = sublink;
+                            apartment.sublink = domain + sublink;
+                            apartment.apartmentName = name;
                             apartment.address = address;
 
                             // process sub link
-                            string filePath_sub = "http://www.renthub.in.th/" + sublink;
+                            string filePath_sub = domain + sublink;
                             string data_sub = getHTMLdata(filePath_sub);
                             HtmlAgilityPack.HtmlDocument htmlDoc_sub = new HtmlAgilityPack.HtmlDocument();
                             htmlDoc_sub.OptionFixNestedTags = true;
                             htmlDoc_sub.LoadHtml(data_sub);
                             string searchText = "var loc = ";
-                            //string endText =  "var condo_project_id ="; // var apartment_id
-                            string endText = "var apartment_id ="; // var apartment_id
+                            string endText_conndo =  "var condo_project_id ="; // var apartment_id
+                            string endText_apart = "var apartment_id ="; // var apartment_id
                             int start = data_sub.IndexOf(searchText) + searchText.Length;
-                            int end = data_sub.IndexOf(endText);
+                            int end = data_sub.IndexOf(endText_apart);
+                            if(end < 0)
+                            {
+                                end = data_sub.IndexOf(endText_conndo);
+                            }
                             var location_hash = data_sub.Substring(start + 1, end - start).Split(';')[0].Replace("\"", "");
                             if (htmlDoc_sub.DocumentNode != null)
                             {

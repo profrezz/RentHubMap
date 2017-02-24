@@ -1,5 +1,18 @@
 ﻿@model renthubmap.Models.DTOContainer
 
 <h2>SearchResult</h2>
+@if (Model != null)
+{
+    foreach (var apartment in Model.appartment)
+    {
+        <img src="@apartment.image">
+        <div>@apartment.apartmentName</div>
+        <div>@apartment.latitude</div>
+        <div>@apartment.longitude</div>
+        <div>@apartment.address</div>
+        @Html.Raw(apartment.innerHTML_info)
+        @Html.Raw(apartment.innerHTML_room)
+    }
+}
 
-@Html.TextBoxFor(model => model.link)
+
