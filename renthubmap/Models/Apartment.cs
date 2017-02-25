@@ -10,6 +10,7 @@ namespace renthubmap.Models
         public Apartment()
         {
         }
+        public int apartmentID { get; set; }
         public string apartmentName { get; set; }
         public string image { get; set; }
         public string address { get; set; }

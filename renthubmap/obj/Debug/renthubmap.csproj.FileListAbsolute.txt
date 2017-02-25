@@ -67,6 +67,7 @@ C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\bin\M
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.csprojResolveAssemblyReference.cache
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.dll
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.pdb
+C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.Migrations.add_table.resources
+C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.csproj.GenerateResource.Cache
