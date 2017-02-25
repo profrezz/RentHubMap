@@ -12,5 +12,6 @@ namespace renthubmap.Models
         public string linkName { get; set; }
         public int zone_id { get; set; }
         public string resuorce { get; set; }
+        public int total { get; set; }
     }
 }

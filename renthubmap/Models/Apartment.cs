@@ -16,6 +16,7 @@ namespace renthubmap.Models
         public string address { get; set; }
         public string sublink { get; set; }
 
+        public string loc_hash { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }
 

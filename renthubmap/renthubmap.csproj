@@ -184,6 +184,14 @@
     <Compile Include="Migrations\201702251022250_add_table.Designer.cs">
       <DependentUpon>201702251022250_add_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702251136119_adjust table ApartmentList.cs" />
+    <Compile Include="Migrations\201702251136119_adjust table ApartmentList.Designer.cs">
+      <DependentUpon>201702251136119_adjust table ApartmentList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702251153274_add column loc_hash.cs" />
+    <Compile Include="Migrations\201702251153274_add column loc_hash.Designer.cs">
+      <DependentUpon>201702251153274_add column loc_hash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Apartment.cs" />
@@ -254,6 +262,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Renthub\Search.cshtml" />
     <Content Include="Views\Renthub\SearchResult.cshtml" />
+    <Content Include="Views\Renthub\ShowList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +282,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702251022250_add_table.resx">
       <DependentUpon>201702251022250_add_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702251136119_adjust table ApartmentList.resx">
+      <DependentUpon>201702251136119_adjust table ApartmentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702251153274_add column loc_hash.resx">
+      <DependentUpon>201702251153274_add column loc_hash.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

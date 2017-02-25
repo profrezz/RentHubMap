@@ -2,6 +2,7 @@
 using renthubmap.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -17,23 +18,23 @@ namespace renthubmap.Controllers
 
         public ActionResult ShowList(string type)
         {
-            switch (type)
-            {
-                case "apartment":
+            string mock = "apartment";
+            //switch (type)
+            //{
+            //    case "apartment":
                     
-                    break;
-                default:
-                    break;
-            }
-            List<DTOContainer> list = db.DTOContainers.Where(it => it.resuorce.Equals(type)).ToList();
-            return View();
+            //        break;
+            //    default:
+            //        break;
+            //}
+            List<ApartmentList> apartment_refer_list = db.apartmentList.Where(it => it.resuorce.Equals(mock)).ToList();
+            return View(apartment_refer_list);
         }
 
         // GET: Renthub
         public ActionResult Search()
         {
             correctList(300, 350);
-
             return View();
         }
 
@@ -43,6 +44,7 @@ namespace renthubmap.Controllers
             {
                 try
                 {
+                    
                     string link = string.Format("http://www.renthub.in.th/zones/switch_tab?locale=th&zone_id={0}&resource=Apartment&page=1", zone_id);
                     string html = getHTMLdata(link);
                     dynamic jsonresult = DeserializeJSON<object>(html);
@@ -55,9 +57,14 @@ namespace renthubmap.Controllers
                     container.linkName = title;
                     container.resuorce = "apartment";
                     container.zone_id = zone_id;
+                    container.total = totalpage;
+                    if( ! db.apartmentList.Where(it => it.zone_id == zone_id).Any())
+                    {
+                        db.apartmentList.Add(container);
+                        db.SaveChanges();
 
-                    db.apartmentList.Add(container);
-                    db.SaveChanges();
+                        //db.Entry(container).State = EntityState.Modified;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -164,7 +171,7 @@ namespace renthubmap.Controllers
                                 var image_box = main_box.InnerHtml;
                                 var main_infos = main_box.NextSibling.NextSibling.InnerHtml;
                                 var price_infos = main_box.NextSibling.NextSibling.NextSibling.NextSibling.InnerHtml;
-                                
+                                apartment.loc_hash = location_hash;
                                 apartment.innerHTML_room = head_info;
                                 apartment.innerHTML_image = image_box;
                                 apartment.innerHTML_info = main_infos;

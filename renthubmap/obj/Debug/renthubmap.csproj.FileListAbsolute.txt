@@ -71,3 +71,6 @@ C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\D
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.pdb
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.Migrations.add_table.resources
 C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.csproj.GenerateResource.Cache
+C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.csprojResolveAssemblyReference.cache
+C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.Migrations.adjusttableApartmentList.resources
+C:\Users\noppa\Documents\Visual Studio 2015\Projects\renthubmap\renthubmap\obj\Debug\renthubmap.Migrations.addcolumnloc_hash.resources

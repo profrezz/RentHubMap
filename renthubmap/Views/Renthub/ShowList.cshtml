@@ -1,0 +1,15 @@
+﻿@model List<renthubmap.Models.ApartmentList>
+@{
+    ViewBag.Title = "ShowList";
+}
+
+<h2>ShowList</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6">
+            <li><a href="@item.link">@item.linkName (@item.total)</a></li>
+        </div>
+    }
+</div>
